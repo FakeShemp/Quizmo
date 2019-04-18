@@ -7,7 +7,7 @@ class LoginScreen extends Component {
         return (
             <Card>
                 <Card.Body>
-                    <Card.Title>Log in</Card.Title>
+                    <Card.Title><h1>Quizmo</h1></Card.Title>
                     <Button variant="success">Log in with Spotify</Button>
                 </Card.Body>
             </Card>
