@@ -1,16 +1,18 @@
+/**
+ * This is the screen from which the user logs in.
+ */
+
 import React, { Component } from 'react';
-import { Button, Card } from 'react-bootstrap'
+import ContainerComponent from '../components/ContainerComponent';
+import LoginComponent from '../components/LoginComponent';
 
 class LoginScreen extends Component {
 
     render() {
         return (
-            <Card>
-                <Card.Body>
-                    <Card.Title><h1>Quizmo</h1></Card.Title>
-                    <Button variant="success">Log in with Spotify</Button>
-                </Card.Body>
-            </Card>
+            <ContainerComponent>
+                <LoginComponent></LoginComponent>
+            </ContainerComponent>
         )
     }
 }
