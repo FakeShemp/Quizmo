@@ -1,6 +1,13 @@
+/**
+ * This is the screen from which the user logs in.
+ */
+
 import React, { Component } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import Spotify from 'spotify-web-api-js';
+import ContainerComponent from '../components/ContainerComponent';
+import LoginComponent from '../components/LoginComponent';
+
 
 //webspotifymagic
 const spotifyWebApi = new Spotify();
@@ -85,7 +92,8 @@ class LoginScreen  extends Component <{},State> {
   
 
    public render() {
-        return (
+          return (
+<div>
             <Card>
                 <Card.Body>
                     <Card.Title><h1>Quizmo</h1></Card.Title>
@@ -96,9 +104,12 @@ class LoginScreen  extends Component <{},State> {
                     <img src={ this.state.nowPlaying.image } style={{width: 100}}/>
                     <button onClick={() => this.getUser()}>user</button>
                     <button onClick={() => this.getplayLists()}>playlists</button>
-                    
-                </Card.Body>
+                    </Card.Body>
             </Card>
+            <ContainerComponent>
+                <LoginComponent></LoginComponent>
+            </ContainerComponent>
+</div>
         )
     }
 }
