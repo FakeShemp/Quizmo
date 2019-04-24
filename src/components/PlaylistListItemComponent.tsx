@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import { Media } from 'react-bootstrap';
 
-class PlaylistIconComponent extends Component {
+class PlaylistListItemComponent extends Component {
     render() {
         return (
             <Media>
@@ -25,4 +25,4 @@ class PlaylistIconComponent extends Component {
     }
 }
 
-export default PlaylistIconComponent;
+export default PlaylistListItemComponent;

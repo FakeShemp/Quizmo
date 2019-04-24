@@ -5,8 +5,9 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import ContainerComponent from '../components/ContainerComponent';
-import PlaylistIconComponent from '../components/PlaylistIconComponent';
+import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
 import UserComponent from '../components/UserComponent';
+import NewQuizComponent from '../components/NewQuizComponent';
 
 class DashboardScreen extends Component {
     render() {
@@ -16,11 +17,12 @@ class DashboardScreen extends Component {
                     <Card style={{ width: "35%", height: "100%" }}>
                         <UserComponent></UserComponent>
                     </Card>
-                    <Card style={{ width: "60%" }}>
-                        <PlaylistIconComponent></PlaylistIconComponent>
-                        <PlaylistIconComponent></PlaylistIconComponent>
-                        <PlaylistIconComponent></PlaylistIconComponent>
-                        <PlaylistIconComponent></PlaylistIconComponent>
+                    <Card style={{ width: "60%", height: "100%" }}>
+                        <NewQuizComponent></NewQuizComponent>
+                        <PlaylistListItemComponent></PlaylistListItemComponent>
+                        <PlaylistListItemComponent></PlaylistListItemComponent>
+                        <PlaylistListItemComponent></PlaylistListItemComponent>
+                        <PlaylistListItemComponent></PlaylistListItemComponent>
                     </Card>
                 </Card.Body>
             </ContainerComponent>
