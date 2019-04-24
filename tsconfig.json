@@ -21,5 +21,9 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+   "src/auth_code"
   ]
 }
+  
