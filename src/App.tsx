@@ -16,6 +16,7 @@ class App extends Component {
           <HamburgerComponent></HamburgerComponent>
           <Switch>
             <Route exact path="/" component={LoginScreen} />
+            <Route exact path="/login" component={LoginScreen} />
             <Route exact path="/dashboard" component={DashboardScreen} />
             <Route exact path="/playlists" component={SelectPlaylistScreen} />
             <Route exact path="/songs" component={SelectSongScreen} />
