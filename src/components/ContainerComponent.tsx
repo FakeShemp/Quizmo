@@ -12,7 +12,7 @@ class ContainerComponent extends Component {
 
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
-                <Container style={{ width: "50rem" }}>
+                <Container>
                     {children}
                 </Container>
             </div>

@@ -3,9 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import ContainerComponent from '../components/ContainerComponent';
-import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
+import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
 
@@ -13,19 +13,21 @@ class DashboardScreen extends Component {
     render() {
         return (
             <ContainerComponent>
-                <Card.Body style={{ display: "flex", justifyContent: "space-evenly" }}>
-                    <Card style={{ width: "35%", height: "100%" }}>
-                        <UserComponent></UserComponent>
-                    </Card>
-                    <Card style={{ width: "60%", height: "100%" }}>
-                        <NewQuizComponent></NewQuizComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                    </Card>
+                <Card.Body>
+                    <UserComponent></UserComponent>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <NewQuizComponent></NewQuizComponent>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <QuizListItemComponent quizname="Mental Metal"></QuizListItemComponent>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <QuizListItemComponent quizname="80's Pop"></QuizListItemComponent>
+                        </ListGroup.Item>
+                    </ListGroup>
                 </Card.Body>
-            </ContainerComponent>
+            </ContainerComponent >
         )
     }
 }

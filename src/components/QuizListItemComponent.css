@@ -1,0 +1,14 @@
+.QuizIcon {
+    filter: opacity(30%);
+    min-height: 4rem;
+    max-height: 4rem;
+}
+
+.QuizItem {
+    min-height: 4rem;
+    max-height: 4rem;
+}
+
+.QuizIcon:hover {
+    filter: opacity(50%);
+}

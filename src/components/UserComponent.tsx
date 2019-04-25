@@ -5,18 +5,21 @@
 
 import React, { Component, Fragment } from 'react';
 import { Card } from 'react-bootstrap';
+import './UserComponent.css'
 
 class UserComponent extends Component {
     render() {
         const username = "Username";
 
         return (
-            <Fragment>
-                <Card.Img variant="top" src="http://placekitten.com/250/200" />
+            <Card className="border-0">
+                <div className="text-center">
+                    <Card.Img className="userIcon" variant="top" src="http://placekitten.com/100/100" />
+                </div>
                 <Card.Body>
-                    <Card.Title>Hello {username}</Card.Title>
+                    <Card.Title className="text-center">Hello {username}!</Card.Title>
                 </Card.Body>
-            </Fragment>
+            </Card>
         )
     }
 }

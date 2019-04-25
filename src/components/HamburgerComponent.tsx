@@ -13,7 +13,12 @@ class HamburgerComponent extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
-                        <Nav.Link href="/logout">Logout</Nav.Link>
+                        <Nav.Link href="/">Log In</Nav.Link>
+                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                        <Nav.Link href="/playlists">Playlists</Nav.Link>
+                        <Nav.Link href="/songs">Songs</Nav.Link>
+                        <Nav.Link href="/answers">Answers</Nav.Link>
+                        <Nav.Link href="/questionform">Input Question</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
