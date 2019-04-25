@@ -7,9 +7,13 @@ import React, { Component } from 'react';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './PlaylistListItemComponent.css'
 
-class PlaylistListItemComponent extends Component {
+interface Props {
+    playlistname: string;
+}
+
+class PlaylistListItemComponent extends Component<Props> {
     render() {
-        const PlaylistName = "Playlist X"
+        const PlaylistName = this.props.playlistname;
 
         return (
             <Card>

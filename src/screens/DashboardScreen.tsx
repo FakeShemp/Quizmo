@@ -20,10 +20,10 @@ class DashboardScreen extends Component {
                             <NewQuizComponent></NewQuizComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <QuizListItemComponent></QuizListItemComponent>
+                            <QuizListItemComponent quizname="Mental Metal"></QuizListItemComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <QuizListItemComponent></QuizListItemComponent>
+                            <QuizListItemComponent quizname="80's Pop"></QuizListItemComponent>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>

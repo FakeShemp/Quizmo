@@ -6,9 +6,13 @@ import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import './QuizListItemComponent.css';
 
-class QuizListItemComponent extends Component {
+interface Props {
+    quizname: string;
+}
+
+class QuizListItemComponent extends Component<Props> {
     render() {
-        const quizName = "Quiz Name";
+        const quizName = this.props.quizname;
 
         return (
             <Card className="QuizItem">

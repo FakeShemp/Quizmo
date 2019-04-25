@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './SongListItemComponent.css'
 
-class SongListItemComponent extends Component {
+interface Props {
+    songtitle: string,
+    artist: string,
+    year: string
+}
+
+class SongListItemComponent extends Component<Props> {
     render() {
-        const SongTitle = "Song";
-        const Artist = "Artist";
-        const Year = "Year";
+        const SongTitle = this.props.songtitle;
+        const Artist = this.props.artist;
+        const Year = this.props.year;
 
         return (
             <Card>
