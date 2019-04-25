@@ -4,23 +4,28 @@
  */
 
 import React, { Component } from 'react';
-import { Media } from 'react-bootstrap';
+import { Card, Row, Col, Image } from 'react-bootstrap';
+import './PlaylistListItemComponent.css'
 
 class PlaylistListItemComponent extends Component {
     render() {
+        const PlaylistName = "Playlist X"
+
         return (
-            <Media>
-                <img
-                    width={72}
-                    height={72}
-                    className="mr-3"
-                    src="http://placekitten.com/72/72"
-                />
-                <Media.Body style={{ justifyContent: "left" }}>
-                    <h5>Playlist X</h5>
-                    <p>Song 1, Song 2, Song 3...</p>
-                </Media.Body>
-            </Media>
+            <Card>
+                <Row>
+                    <Col xs={3}>
+                        <Image
+                            className="PlaylistIcon"
+                            src="http://placekitten.com/150/150"
+                            alt="Playlist image"
+                        />
+                    </Col>
+                    <Col className="my-auto">
+                        <h5>{PlaylistName}</h5>
+                    </Col>
+                </Row>
+            </Card>
         )
     }
 }
