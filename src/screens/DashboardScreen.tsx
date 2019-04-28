@@ -9,7 +9,12 @@ import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
 
+
+
+
 class DashboardScreen extends Component {
+
+
     render() {
         return (
             <ContainerComponent>
@@ -19,9 +24,6 @@ class DashboardScreen extends Component {
                     </Card>
                     <Card style={{ width: "60%", height: "100%" }}>
                         <NewQuizComponent></NewQuizComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
-                        <PlaylistListItemComponent></PlaylistListItemComponent>
                         <PlaylistListItemComponent></PlaylistListItemComponent>
                     </Card>
                 </Card.Body>

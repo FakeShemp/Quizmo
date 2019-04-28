@@ -11,7 +11,9 @@ class LoginComponent extends Component {
         return (
             <Card.Body>
                 <Card.Title><h1>Quizmo</h1></Card.Title>
+                <a href='http://localhost:8888'>
                 <Button variant="success">Log in with Spotify</Button>
+                </a>
             </Card.Body>
         );
     }

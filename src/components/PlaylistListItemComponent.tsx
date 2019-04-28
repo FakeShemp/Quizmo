@@ -3,26 +3,72 @@
  * a playlist so the user can identify it easily.
  */
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Media } from 'react-bootstrap';
+import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
 
-class PlaylistListItemComponent extends Component {
+interface Props {
+    getPlayLists: any,
+    // runIt: any
+}
+
+interface State {
+    playLists: {
+        items?: [{name:string}]
+    }
+}
+
+declare const Play:[];
+
+
+class PlaylistListItemComponent extends Component <Props,State> {
+    constructor(props:any) {
+        super(props)
+        this.state = {
+            playLists: {}
+        }
+    }
+
+    componentDidMount() {
+        // this.props.runIt();
+        this.props.getPlayLists()
+        .then((res:object) => {
+            console.log(res)
+            this.setState({playLists: res})
+        });
+
+    }
+
+
     render() {
+        //when playlists is fetched this runs
+       const  playListList = () => {
+        if (this.state.playLists.items) {
+
+           const Play = this.state.playLists.items.map((item,i) =>{
+          return  <li key={i}> <img width={50}
+          height={50}
+          className="mr-3"
+          src="http://placekitten.com/200/300"/> {item.name}</li>
+           });
+           return Play;
+        }
+
+    }
+
+
         return (
             <Media>
-                <img
-                    width={72}
-                    height={72}
-                    className="mr-3"
-                    src="http://placekitten.com/72/72"
-                />
                 <Media.Body style={{ justifyContent: "left" }}>
-                    <h5>Playlist X</h5>
-                    <p>Song 1, Song 2, Song 3...</p>
+                <ul style={{ listStyleType: "none",justifyContent: "left"}}>
+            {playListList()}
+            </ul>
                 </Media.Body>
+
             </Media>
+
         )
     }
 }
 
-export default PlaylistListItemComponent;
+export default GetSpotifyInfo(PlaylistListItemComponent);
