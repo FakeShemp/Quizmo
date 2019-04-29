@@ -8,8 +8,14 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
+import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
+
+
+
 
 class DashboardScreen extends Component {
+
+
     render() {
         return (
             <ContainerComponent>
@@ -20,6 +26,7 @@ class DashboardScreen extends Component {
                             <NewQuizComponent></NewQuizComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>
+            <PlaylistListItemComponent></PlaylistListItemComponent>
                             <QuizListItemComponent quizname="Mental Metal"></QuizListItemComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>

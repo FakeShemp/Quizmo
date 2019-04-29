@@ -3,20 +3,66 @@
  * a playlist so the user can identify it easily.
  */
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Media } from 'react-bootstrap';
+import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './PlaylistListItemComponent.css'
 
 interface Props {
-    playlistname: string;
+    getPlayLists: any,
+    playlistname: string
 }
 
-class PlaylistListItemComponent extends Component<Props> {
+interface State {
+    playLists: {
+        items?: [{name:string}]
+    }
+}
+
+declare const Play:[];
+
+
+class PlaylistListItemComponent extends Component <Props,State> {
+    constructor(props:any) {
+        super(props)
+        this.state = {
+            playLists: {}
+        }
+    }
+
+    componentDidMount() {
+        // this.props.runIt();
+        this.props.getPlayLists()
+        .then((res:object) => {
+            console.log(res)
+            this.setState({playLists: res})
+        });
+
+    }
+   
     render() {
+      
+           //when playlists is fetched this runs
+       const  playListList = () => {
+        if (this.state.playLists.items) {
+
+           const Play = this.state.playLists.items.map((item,i) =>{
+          return  <li key={i}> <img width={50}
+          height={50}
+          className="mr-3"
+          src="http://placekitten.com/200/300"/> {item.name}</li>
+           });
+           return Play;
+        }
+
+    }
+
         const PlaylistName = this.props.playlistname;
 
         return (
             <Card>
+                
                 <Row>
                     <Col xs={3}>
                         <Image
@@ -34,4 +80,7 @@ class PlaylistListItemComponent extends Component<Props> {
     }
 }
 
-export default PlaylistListItemComponent;
+
+
+
+export default GetSpotifyInfo(PlaylistListItemComponent);
