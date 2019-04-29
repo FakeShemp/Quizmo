@@ -4,7 +4,6 @@
  */
 
 import React, { Component, Fragment } from 'react';
-import { Media } from 'react-bootstrap';
 import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './PlaylistListItemComponent.css'
@@ -16,8 +15,8 @@ interface Props {
 
 interface State {
     playLists: {
-        items?: [{name:string}]
-    }
+        items?: [{name?:any,images?:any}]
+ }
 }
 
 declare const Play:[];
@@ -29,7 +28,9 @@ class PlaylistListItemComponent extends Component <Props,State> {
         this.state = {
             playLists: {}
         }
+        
     }
+
 
     componentDidMount() {
         // this.props.runIt();
@@ -40,6 +41,8 @@ class PlaylistListItemComponent extends Component <Props,State> {
         });
 
     }
+
+    hey2:any;
    
     render() {
       
@@ -47,13 +50,20 @@ class PlaylistListItemComponent extends Component <Props,State> {
        const  playListList = () => {
         if (this.state.playLists.items) {
 
-           const Play = this.state.playLists.items.map((item,i) =>{
-          return  <li key={i}> <img width={50}
-          height={50}
-          className="mr-3"
-          src="http://placekitten.com/200/300"/> {item.name}</li>
+            
+
+           const PlayListItem = this.state.playLists.items.map((item,i) =>{
+            //this is kinda funky but it works.
+            if (item.images[0]) {
+            const hey = item.images[0];
+            this.hey2 = hey.url;
+            console.log(this.hey2)
+            }
+
+          return  <Col xs={10} key={i}> <Image className="PlaylistIcon"
+          src={this.hey2} /> {item.name}</Col>
            });
-           return Play;
+           return PlayListItem;
         }
 
     }
@@ -64,16 +74,7 @@ class PlaylistListItemComponent extends Component <Props,State> {
             <Card>
                 
                 <Row>
-                    <Col xs={3}>
-                        <Image
-                            className="PlaylistIcon"
-                            src="http://placekitten.com/150/150"
-                            alt="Playlist image"
-                        />
-                    </Col>
-                    <Col className="my-auto">
-                        <h5>{PlaylistName}</h5>
-                    </Col>
+                        {playListList()}
                 </Row>
             </Card>
         )

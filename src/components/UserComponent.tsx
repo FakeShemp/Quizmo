@@ -50,7 +50,7 @@ class UserComponent extends Component <Props,State> {
 
             <Card className="border-0">
                 <div className="text-center">
-                    <Card.Img className="userIcon" variant="top" src="http://placekitten.com/100/100" />
+                    <Card.Img className="userIcon" variant="top" src={`${this.state.userImg.url}`} />
                 </div>
                 <Card.Body>
                     <Card.Title className="text-center">Hello {this.state.userName}!</Card.Title>
