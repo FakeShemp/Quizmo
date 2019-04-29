@@ -13,10 +13,10 @@ class SelectPlaylistScreen extends Component {
                     <br/>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <PlaylistListItemComponent playlistname="MJ"></PlaylistListItemComponent>
+                            <PlaylistListItemComponent></PlaylistListItemComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <PlaylistListItemComponent playlistname="Dank Stuff"></PlaylistListItemComponent>
+                            <PlaylistListItemComponent></PlaylistListItemComponent>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>

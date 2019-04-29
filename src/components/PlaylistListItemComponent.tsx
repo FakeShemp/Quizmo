@@ -56,11 +56,13 @@ class PlaylistListItemComponent extends Component <Props,State> {
            return Play;
         }
 
+    }
+
         const PlaylistName = this.props.playlistname;
 
         return (
             <Card>
-             {playListList()}
+                
                 <Row>
                     <Col xs={3}>
                         <Image
@@ -77,5 +79,8 @@ class PlaylistListItemComponent extends Component <Props,State> {
         )
     }
 }
+
+
+
 
 export default GetSpotifyInfo(PlaylistListItemComponent);

@@ -8,6 +8,7 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
+import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
 
 
 
