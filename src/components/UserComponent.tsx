@@ -7,6 +7,8 @@
 import React, { Component, Fragment } from 'react';
 import { Card } from 'react-bootstrap';
 import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
+import './UserComponent.css'
+
 
 
 interface State {
@@ -45,12 +47,16 @@ class UserComponent extends Component <Props,State> {
     render() {
         
         return (
-            <Fragment>
-                <Card.Img variant="top" style={{width: 60,borderRadius: 30,alignSelf: 'center'}} src={`${this.state.userImg.url}`} />
+
+            <Card className="border-0">
+                <div className="text-center">
+                    <Card.Img className="userIcon" variant="top" src="http://placekitten.com/100/100" />
+                </div>
                 <Card.Body>
-                    <Card.Title>Hello {this.state.userName}</Card.Title>
+                    <Card.Title className="text-center">Hello {this.state.userName}!</Card.Title>
+
                 </Card.Body>
-            </Fragment>
+            </Card>
         )
     }
 }

@@ -6,10 +6,12 @@
 import React, { Component, Fragment } from 'react';
 import { Media } from 'react-bootstrap';
 import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
+import { Card, Row, Col, Image } from 'react-bootstrap';
+import './PlaylistListItemComponent.css'
 
 interface Props {
     getPlayLists: any,
-    // runIt: any
+    playlistname: string
 }
 
 interface State {
@@ -38,10 +40,10 @@ class PlaylistListItemComponent extends Component <Props,State> {
         });
 
     }
-
-
+   
     render() {
-        //when playlists is fetched this runs
+      
+           //when playlists is fetched this runs
        const  playListList = () => {
         if (this.state.playLists.items) {
 
@@ -54,19 +56,24 @@ class PlaylistListItemComponent extends Component <Props,State> {
            return Play;
         }
 
-    }
-
+        const PlaylistName = this.props.playlistname;
 
         return (
-            <Media>
-                <Media.Body style={{ justifyContent: "left" }}>
-                <ul style={{ listStyleType: "none",justifyContent: "left"}}>
-            {playListList()}
-            </ul>
-                </Media.Body>
-
-            </Media>
-
+            <Card>
+             {playListList()}
+                <Row>
+                    <Col xs={3}>
+                        <Image
+                            className="PlaylistIcon"
+                            src="http://placekitten.com/150/150"
+                            alt="Playlist image"
+                        />
+                    </Col>
+                    <Col className="my-auto">
+                        <h5>{PlaylistName}</h5>
+                    </Col>
+                </Row>
+            </Card>
         )
     }
 }

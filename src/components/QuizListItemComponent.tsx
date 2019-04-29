@@ -3,11 +3,28 @@
  */
 
 import React, { Component } from 'react';
+import { Card } from 'react-bootstrap';
+import './QuizListItemComponent.css';
 
-class QuizListItemComponent extends Component {
+interface Props {
+    quizname: string;
+}
+
+class QuizListItemComponent extends Component<Props> {
     render() {
+        const quizName = this.props.quizname;
+
         return (
-            <p>Quiz List Item</p>
+            <Card className="QuizItem">
+                <Card.Img
+                    className="QuizIcon"
+                    src="http://placekitten.com/700/150"
+                    alt="Card image"
+                />
+                <Card.ImgOverlay className="my-auto mx-auto text-center">
+                    <Card.Title>{quizName}</Card.Title>
+                </Card.ImgOverlay>
+            </Card>
         )
     }
 }
