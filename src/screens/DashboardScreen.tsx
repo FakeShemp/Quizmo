@@ -27,10 +27,10 @@ class DashboardScreen extends Component {
                         </ListGroup.Item>
                         <ListGroup.Item>
             <PlaylistListItemComponent></PlaylistListItemComponent>
-                            <QuizListItemComponent quizname="Mental Metal"></QuizListItemComponent>
+                            <QuizListItemComponent></QuizListItemComponent>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <QuizListItemComponent quizname="80's Pop"></QuizListItemComponent>
+                            <QuizListItemComponent></QuizListItemComponent>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
