@@ -28,6 +28,7 @@ const spotifyWebApi = new Spotify();
             const params = this.getHashParams();
             if(params.access_token) {
                 spotifyWebApi.setAccessToken(params.access_token);
+                localStorage.setItem('token',"#access_token=" + params.access_token);
             }
 
         }

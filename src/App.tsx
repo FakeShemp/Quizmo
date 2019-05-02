@@ -20,13 +20,13 @@ class App extends Component {
           <HamburgerComponent></HamburgerComponent>
           <Switch>
             <Route exact path="/" component={LoginScreen} />
-            <Route exact path="/login" component={LoginScreen} />
-            <Route exact path="/dashboard" component={DashboardScreen} />
-            <Route exact path="/playlists" component={SelectPlaylistScreen} />
-            <Route exact path="/songs" component={SelectSongScreen} />
-            <Route exact path="/answers" component={SelectAnswerScreen} />
-            <Route exact path="/questionform" component={InputQuestionScreen} />
-            <Route path="/quiz" component={QuizScreen} />
+            <Route path="/login" component={LoginScreen} />
+            <Route path="/dashboard" component={DashboardScreen} />
+            <Route path="/playlists" component={SelectPlaylistScreen} />
+            <Route path="/songs" component={SelectSongScreen} />
+            <Route path="/answers" component={SelectAnswerScreen} />
+            <Route path="/questionform" component={InputQuestionScreen} />
+            <Route exact path="/quiz" component={QuizScreen} />
           </Switch>
         </Router >
       </div >

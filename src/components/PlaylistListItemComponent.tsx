@@ -7,15 +7,17 @@ import React, { Component, Fragment } from 'react';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './PlaylistListItemComponent.css'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 interface Props {
     getPlayLists: any,
-    playlistname: string
+    playlistname: string,
+    runIt:any
 }
 
 interface State {
     playLists: {
-        items?: [{name?:any,images?:any}]
+        items?: [{name?:any,images?:any,href?:any}]
  }
 }
 
@@ -33,7 +35,7 @@ class PlaylistListItemComponent extends Component<Props, State> {
 
 
     componentDidMount() {
-        // this.props.runIt();
+        this.props.runIt();
         this.props.getPlayLists()
             .then((res: object) => {
                 console.log(res)
@@ -42,7 +44,7 @@ class PlaylistListItemComponent extends Component<Props, State> {
 
     }
 
-    hey2:any;
+    image:any;
    
     render() {
 
@@ -56,12 +58,11 @@ class PlaylistListItemComponent extends Component<Props, State> {
             //this is kinda funky but it works.
             if (item.images[0]) {
             const hey = item.images[0];
-            this.hey2 = hey.url;
-            console.log(this.hey2)
+            this.image = hey.url;
             }
 
-          return  <Col xs={10} key={i}> <Image className="PlaylistIcon"
-          src={this.hey2} /> {item.name}</Col>
+          return <Link key={i} to={`/songs/${localStorage.getItem('token')}/list=${item.href}`}> <Col xs={10}> <Image className="PlaylistIcon"
+          src={this.image} /> {item.name}</Col></Link>
                 });
            return PlayListItem;
             }

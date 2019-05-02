@@ -18,7 +18,7 @@ class DashboardScreen extends Component {
                     <UserComponent />
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <Link to="/playlists">
+                            <Link to={`/playlists/${localStorage.getItem('token')}`}>
                                 <NewQuizComponent />
                             </Link>
                         </ListGroup.Item>
