@@ -25,12 +25,12 @@ class DashboardScreen extends Component {
                         <ListGroup.Item>
                             {/* Routing not implemented below */}
                             <Link to="/quiz">
-                                <QuizListItemComponent quizname="Mental Metal" />
+                                <QuizListItemComponent />
                             </Link>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Link to="/quiz">
-                                <QuizListItemComponent quizname="80's Pop" />
+                                <QuizListItemComponent />
                             </Link>
                         </ListGroup.Item>
                     </ListGroup>
