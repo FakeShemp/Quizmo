@@ -10,6 +10,7 @@ import SelectSongScreen from './screens/SelectSongScreen';
 import SelectAnswerScreen from './screens/SelectAnswerScreen';
 import HamburgerComponent from './components/HamburgerComponent';
 import InputQuestionScreen from './screens/InputQuestionScreen';
+import QuizScreen from './screens/QuizScreen';
 
 class App extends Component {
   render() {
@@ -25,7 +26,7 @@ class App extends Component {
             <Route exact path="/songs" component={SelectSongScreen} />
             <Route exact path="/answers" component={SelectAnswerScreen} />
             <Route exact path="/questionform" component={InputQuestionScreen} />
-            <Route path="/quiz/:quizid" component={LoginScreen} />
+            <Route path="/quiz" component={QuizScreen} />
           </Switch>
         </Router >
       </div >

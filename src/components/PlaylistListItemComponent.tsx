@@ -4,7 +4,7 @@
  */
 
 import React, { Component, Fragment } from 'react';
-import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
+import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 import './PlaylistListItemComponent.css'
 
@@ -19,11 +19,11 @@ interface State {
  }
 }
 
-declare const Play:[];
+declare const Play: [];
 
 
-class PlaylistListItemComponent extends Component <Props,State> {
-    constructor(props:any) {
+class PlaylistListItemComponent extends Component<Props, State> {
+    constructor(props: any) {
         super(props)
         this.state = {
             playLists: {}
@@ -35,20 +35,20 @@ class PlaylistListItemComponent extends Component <Props,State> {
     componentDidMount() {
         // this.props.runIt();
         this.props.getPlayLists()
-        .then((res:object) => {
-            console.log(res)
-            this.setState({playLists: res})
-        });
+            .then((res: object) => {
+                console.log(res)
+                this.setState({ playLists: res })
+            });
 
     }
 
     hey2:any;
    
     render() {
-      
-           //when playlists is fetched this runs
-       const  playListList = () => {
-        if (this.state.playLists.items) {
+
+        //when playlists is fetched this runs
+        const playListList = () => {
+            if (this.state.playLists.items) {
 
             
 
@@ -62,17 +62,16 @@ class PlaylistListItemComponent extends Component <Props,State> {
 
           return  <Col xs={10} key={i}> <Image className="PlaylistIcon"
           src={this.hey2} /> {item.name}</Col>
-           });
+                });
            return PlayListItem;
-        }
+            }
 
-    }
+        }
 
         const PlaylistName = this.props.playlistname;
 
         return (
             <Card>
-                
                 <Row>
                         {playListList()}
                 </Row>
