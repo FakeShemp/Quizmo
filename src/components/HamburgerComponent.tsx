@@ -19,6 +19,7 @@ class HamburgerComponent extends Component {
                         <Nav.Link href="/songs">Songs</Nav.Link>
                         <Nav.Link href="/answers">Answers</Nav.Link>
                         <Nav.Link href="/questionform">Input Question</Nav.Link>
+                        <Nav.Link href="/quiz">Quiz</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
