@@ -9,6 +9,7 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
+import { connect } from 'react-redux';
 
 class DashboardScreen extends Component {
     render() {

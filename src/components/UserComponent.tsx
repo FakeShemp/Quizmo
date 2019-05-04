@@ -27,7 +27,7 @@ class UserComponent extends Component<Props, State> {
         super(props);
         this.state = {
             userName: '',
-            userImg: {url: ''},
+            userImg: { url: '' },
             playLists: []
         }
     }
@@ -36,15 +36,22 @@ class UserComponent extends Component<Props, State> {
         this.props.runIt();
         this.props.getUser()
             .then((res: any) => {
-                console.log(res);
+                // console.log(res);
                 this.setState({ userName: res.display_name, userImg: res.images[0] });
             });
     }
 
     render() {
-        let userImage = <Card.Img className="userIcon" variant="top" src="http://placekitten.com/200/200" />
+        let userImage = <Card.Img
+            className="userIcon"
+            variant="top"
+            src="http://placekitten.com/200/200" />
+
         if (this.state.userImg) {
-            userImage = <Card.Img className="userIcon" variant="top" src={`${this.state.userImg.url}`} />
+            userImage = <Card.Img
+                className="userIcon"
+                variant="top"
+                src={`${this.state.userImg.url}`} />
         }
 
         return (

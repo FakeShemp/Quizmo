@@ -12,13 +12,13 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 interface Props {
     getPlayLists: any,
     playlistname: string,
-    runIt:any
+    runIt: any
 }
 
 interface State {
     playLists: {
-        items?: [{name?:any,images?:any,href?:any}]
- }
+        items?: [{ name?: any, images?: any, href?: any }]
+    }
 }
 
 declare const Play: [];
@@ -30,7 +30,7 @@ class PlaylistListItemComponent extends Component<Props, State> {
         this.state = {
             playLists: {}
         }
-        
+
     }
 
 
@@ -44,27 +44,27 @@ class PlaylistListItemComponent extends Component<Props, State> {
 
     }
 
-    image:any;
-   
+    image: any;
+
     render() {
 
         //when playlists is fetched this runs
         const playListList = () => {
             if (this.state.playLists.items) {
 
-            
 
-           const PlayListItem = this.state.playLists.items.map((item,i) =>{
-            //this is kinda funky but it works.
-            if (item.images[0]) {
-            const hey = item.images[0];
-            this.image = hey.url;
-            }
 
-          return <Link key={i} to={`/songs/${localStorage.getItem('token')}/list=${item.href}`}> <Col xs={10}> <Image className="PlaylistIcon"
-          src={this.image} /> {item.name}</Col></Link>
+                const PlayListItem = this.state.playLists.items.map((item, i) => {
+                    //this is kinda funky but it works.
+                    if (item.images[0]) {
+                        const hey = item.images[0];
+                        this.image = hey.url;
+                    }
+
+                    return <Link key={i} to={`/songs/${localStorage.getItem('token')}/list=${item.href}`}> <Col xs={10}> <Image className="PlaylistIcon"
+                        src={this.image} /> {item.name}</Col></Link>
                 });
-           return PlayListItem;
+                return PlayListItem;
             }
 
         }
@@ -74,7 +74,7 @@ class PlaylistListItemComponent extends Component<Props, State> {
         return (
             <Card>
                 <Row>
-                        {playListList()}
+                    {playListList()}
                 </Row>
             </Card>
         )
