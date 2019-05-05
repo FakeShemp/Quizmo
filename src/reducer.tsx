@@ -1,15 +1,21 @@
 import { combineReducers } from 'redux'
 
 const initialState = {
-    token: null
+    access_token: null,
+    refresh_token: null
 }
 
 const root = (state = initialState, action: any) => {
     switch (action.type) {
-        case 'SET_TOKEN':
+        case 'SET_ACCESS_TOKEN':
             return {
                 ...state,
-                token: action.payload
+                access_token: action.payload
+            }
+        case 'SET_REFRESH_TOKEN':
+            return {
+                ...state,
+                refresh_token: action.payload
             }
         default:
             return state
@@ -19,4 +25,4 @@ const root = (state = initialState, action: any) => {
 export default combineReducers({
     root,
     // Here you can add more reducers
-  })
+})

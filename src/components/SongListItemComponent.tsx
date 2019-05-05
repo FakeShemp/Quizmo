@@ -5,14 +5,20 @@ import './SongListItemComponent.css'
 interface Props {
     songtitle: string,
     artist: string,
-    year: string
+    year: string,
+    image_url: string
 }
 
 class SongListItemComponent extends Component<Props> {
     render() {
-        const SongTitle = this.props.songtitle;
-        const Artist = this.props.artist;
-        const Year = this.props.year;
+        const songTitle = this.props.songtitle;
+        const artist = this.props.artist;
+        const year = this.props.year;
+        let image_url = "http://placekitten.com/150/150";
+
+        if (this.props.image_url) {
+            image_url = this.props.image_url;
+        }
 
         return (
             <Card>
@@ -20,13 +26,13 @@ class SongListItemComponent extends Component<Props> {
                     <Col xs={3}>
                         <Image
                             className="SongIcon"
-                            src="http://placekitten.com/150/150"
+                            src={image_url}
                             alt="Song image"
                         />
                     </Col>
                     <Col className="my-auto">
-                        <h5>{SongTitle}</h5>
-                        <h6>{Artist} ({Year})</h6>
+                        <h5>{songTitle}</h5>
+                        <h6>{artist} ({year})</h6>
                     </Col>
                 </Row>
             </Card>

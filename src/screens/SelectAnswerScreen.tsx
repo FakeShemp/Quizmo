@@ -3,8 +3,36 @@ import { Button, Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import './SelectAnswerScreen.css'
+import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 
-class SelectAnswerScreen extends Component {
+interface Props {
+    // getPlaylistSongs(trackId: string): any,
+    location: {
+        state: {
+            id: string
+        }
+    }
+}
+
+class SelectAnswerScreen extends Component<Props> {
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            id: "",
+            songInfo: {}
+        };
+    }
+
+    componentDidMount() {
+        this.setState({ id: this.props.location.state.id })
+
+        // this.props.getPlaylistSongs(this.props.location.state.id)
+        //     .then((res: object) => {
+        //         this.setState({ songs: res })
+        //     });
+    }
+    
     render() {
         const Artist = "Michael Jackson";
         const SongTitle = "Thriller";
@@ -75,4 +103,4 @@ class SelectAnswerScreen extends Component {
     }
 }
 
-export default SelectAnswerScreen;
+export default GetSpotifyInfo(SelectAnswerScreen);

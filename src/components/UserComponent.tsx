@@ -6,7 +6,21 @@
 import React, { Component, Fragment } from 'react';
 import { Card } from 'react-bootstrap';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
+import { SpotifyAccessComponent } from './HOCS/SpotifyAccessComponent'
 import './UserComponent.css'
+
+interface Props {
+    getUser: any,
+    runIt: any,
+    getHashParams: any,
+}
+
+// interface Props {
+//     access_token: any,
+//     refresh_token: string,
+//     setNewAccessToken(access_token?: string): void,
+//     setNewRefreshToken(refresh_token?: string): void
+// }
 
 interface State {
     userName: string,
@@ -15,16 +29,11 @@ interface State {
     },
     playLists: object
 }
-interface Props {
-    getUser: any,
-    runIt: any,
-    getHashParams: any,
-}
 
 class UserComponent extends Component<Props, State> {
-
     constructor(props: any) {
         super(props);
+
         this.state = {
             userName: '',
             userImg: { url: '' },
@@ -33,6 +42,8 @@ class UserComponent extends Component<Props, State> {
     }
 
     componentDidMount() {
+        // this.props.setNewAccessToken();
+        // this.props.setNewRefreshToken();
         this.props.runIt();
         this.props.getUser()
             .then((res: any) => {
@@ -68,3 +79,4 @@ class UserComponent extends Component<Props, State> {
 }
 
 export default GetSpotifyInfo(UserComponent);
+// export default SpotifyAccessComponent(UserComponent);

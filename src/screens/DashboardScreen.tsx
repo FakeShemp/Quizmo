@@ -9,17 +9,21 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
-import { connect } from 'react-redux';
 
 class DashboardScreen extends Component {
     render() {
         return (
             <ContainerComponent>
                 <Card.Body>
-                    <UserComponent />
+                    <UserComponent
+                    // access_token=""
+                    // refresh_token=""
+                    // setNewAccessToken={SpotifyAccessComponent}
+                    // setNewRefreshToken={SpotifyAccessComponent}
+                    />
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <Link to={`/playlists/${localStorage.getItem('token')}`}>
+                            <Link to="/playlists">
                                 <NewQuizComponent />
                             </Link>
                         </ListGroup.Item>

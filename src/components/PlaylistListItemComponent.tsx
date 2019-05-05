@@ -17,12 +17,14 @@ interface Props {
 
 interface State {
     playLists: {
-        items?: [{ name?: any, images?: any, href?: any }]
+        items?: [{
+            name?: any,
+            images?: any,
+            href?: any,
+            id?: any
+        }]
     }
 }
-
-declare const Play: [];
-
 
 class PlaylistListItemComponent extends Component<Props, State> {
     constructor(props: any) {
@@ -30,29 +32,22 @@ class PlaylistListItemComponent extends Component<Props, State> {
         this.state = {
             playLists: {}
         }
-
     }
 
-
     componentDidMount() {
-        this.props.runIt();
         this.props.getPlayLists()
             .then((res: object) => {
                 console.log(res)
                 this.setState({ playLists: res })
             });
-
     }
 
     image: any;
 
     render() {
-
         //when playlists is fetched this runs
         const playListList = () => {
             if (this.state.playLists.items) {
-
-
 
                 const PlayListItem = this.state.playLists.items.map((item, i) => {
                     //this is kinda funky but it works.
@@ -61,15 +56,30 @@ class PlaylistListItemComponent extends Component<Props, State> {
                         this.image = hey.url;
                     }
 
-                    return <Link key={i} to={`/songs/${localStorage.getItem('token')}/list=${item.href}`}> <Col xs={10}> <Image className="PlaylistIcon"
-                        src={this.image} /> {item.name}</Col></Link>
+                    return (
+                        // <Link
+                        //     key={i}
+                        //     to={`/songs/${localStorage.getItem('token')}/list=${item.href}`}
+                        // >
+                        <Link key={i}
+                            to={{
+                                pathname: '/songs',
+                                state: {
+                                    id: item.id
+                                }
+                            }}>
+                            <Col xs={10}>
+                                <Image className="PlaylistIcon"
+                                    src={this.image} />
+                                {item.name}
+                            </Col>
+                        </Link>
+                    )
                 });
                 return PlayListItem;
             }
 
         }
-
-        const PlaylistName = this.props.playlistname;
 
         return (
             <Card>
@@ -80,8 +90,5 @@ class PlaylistListItemComponent extends Component<Props, State> {
         )
     }
 }
-
-
-
 
 export default GetSpotifyInfo(PlaylistListItemComponent);
