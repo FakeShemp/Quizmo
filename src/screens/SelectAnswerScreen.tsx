@@ -9,14 +9,46 @@ interface Props {
     getSong:any
 }
 interface State {
-    track:{name?:string,album?:{artists?:[{name?:string}]}}
+    id: string,
+    track: {
+        id: string,
+        name:string,
+        artists: [{
+            name:string
+        }],
+        album: {
+            images:[
+                {url:string}, //640
+                {url:string}, //300
+                {url:string} //64 px
+            ],
+            release_date: string,
+            name:string
+        }
+    }
 }
 
 class SelectAnswerScreen extends Component <Props,State>{
     constructor(props:any) {
         super(props);
         this.state = {
-            track: {}
+            id: "",
+            track: {
+              id:"",
+              name:"",
+              artists : [{
+                name:""
+                  }],
+                  album: {
+                      images: [
+                          {url:""},
+                          {url:""},
+                          {url:""}
+                      ],
+                      release_date:"",
+                      name:""
+                  }
+            }
         }
     }
 
@@ -36,12 +68,10 @@ componentDidMount() {
 
     render() {
 
-        // let test = this.state.track.artists
-        // console.log(test)
-        const Artist = 'placeholder';
+        const Artist = this.state.track.artists[0].name;
         const SongTitle = this.state.track.name;
-         const AlbumTitle = 'placeholder';
-        const AlbumYear = "1982";
+         const AlbumTitle = this.state.track.album.name;
+        const AlbumYear = this.state.track.album.release_date;
 
         return (
             <ContainerComponent>

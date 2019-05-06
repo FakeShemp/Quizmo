@@ -12,7 +12,6 @@ interface Props {
 getSongs:any,
 }
 
-declare let songList:any;
 
 class SongListItemComponent extends Component<Props,State> {
     constructor(props:any) {
@@ -32,7 +31,6 @@ class SongListItemComponent extends Component<Props,State> {
 
      this.props.getSongs(finalTracksID)
      .then((list:any) => {
-        console.log(list)
         this.setState({tracks : list})});
         
     }       

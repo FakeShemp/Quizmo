@@ -16,7 +16,12 @@ interface Props {
 
 interface State {
     playLists: {
-        items?: [{name?:any,images?:any,href?:any,id?:any}]
+        items?: [{
+            name?:any,
+            images?:any,
+            href?:any,
+            id?:any
+        }]
  }
 }
 
