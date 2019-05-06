@@ -1,4 +1,9 @@
 .NewQuizButton {
     min-height: 4rem;
     max-height: 4rem;
+    background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
+}
+
+a {
+    color: lavender;
 }
