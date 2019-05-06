@@ -1,37 +1,61 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Image } from 'react-bootstrap';
-import './SongListItemComponent.css'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './SongListItemComponent.css';
+import {GetSpotifyInfo} from '../components/HOCS/GetSpotifyInfoHoc';
 
-interface Props {
-    songtitle: string,
-    artist: string,
-    year: string
+interface State {
+    tracks:[{track:{artists:{[name:string]:any},name?:string},id?:any}?]
 }
 
-class SongListItemComponent extends Component<Props> {
-    render() {
-        const SongTitle = this.props.songtitle;
-        const Artist = this.props.artist;
-        const Year = this.props.year;
+interface Props {
+getSongs:any,
+}
 
+declare let songList:any;
+
+class SongListItemComponent extends Component<Props,State> {
+    constructor(props:any) {
+        super(props);
+        this.state = {
+            tracks: []
+        }
+    }
+
+
+    componentDidMount() {   
+
+        //split up the id frpm the url.
+        let tracksId = document.URL;
+       let tracksIDSplit = tracksId.split("/");
+        let finalTracksID = tracksIDSplit[4].substring(3)
+
+     this.props.getSongs(finalTracksID)
+     .then((list:any) => {
+        console.log(list)
+        this.setState({tracks : list})});
+        
+    }       
+     
+
+    render() {
+      const rendSongs = () => {
+         const songList = this.state.tracks.map((item:any,i:number) => {
+
+            return <Link  key={i} to={`/answers/id=${item.track.id}/${localStorage.getItem('token')}/`}><Col xs={7} className="my-auto"> <Image width={40} src={`${item.track.album.images[0].url}`}
+            /> {item.track.artists[0].name} {item.track.name}
+            </Col></Link>
+           })
+           return songList;
+       } 
         return (
             <Card>
                 <Row>
-                    <Col xs={3}>
-                        <Image
-                            className="SongIcon"
-                            src="http://placekitten.com/150/150"
-                            alt="Song image"
-                        />
-                    </Col>
-                    <Col className="my-auto">
-                        <h5>{SongTitle}</h5>
-                        <h6>{Artist} ({Year})</h6>
-                    </Col>
+                      {rendSongs()}
                 </Row>
             </Card>
         )
     }
 }
 
-export default SongListItemComponent;
+export default GetSpotifyInfo(SongListItemComponent);

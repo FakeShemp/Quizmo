@@ -12,20 +12,10 @@ class SelectSongScreen extends Component {
                     <Card.Title className="text-center">Select a song</Card.Title>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <Link to="/answers">
-                                <SongListItemComponent
-                                    songtitle="Thriller"
-                                    artist="Michael Jackson"
-                                    year="1982" />
-                            </Link>
+                                <SongListItemComponent />
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Link to="/answers">
-                                <SongListItemComponent
-                                    songtitle="Bad"
-                                    artist="Michael Jackson"
-                                    year="1987" />
-                            </Link>
+                                <SongListItemComponent />
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
