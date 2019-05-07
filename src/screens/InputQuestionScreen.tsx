@@ -11,14 +11,21 @@ interface Props {
 }
 
 interface State {
-    answer: string
+    answer: string,
+    question: string
 }
 
 class InputQuestionScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props);
 
-        this.state = { answer: "" };
+        this.state = {
+            answer: "",
+            question: ""
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +36,34 @@ class InputQuestionScreen extends Component<Props, State> {
         }
     }
 
+    handleChange(event: any) {
+        this.setState({ question: event.target.value });
+    }
+
+    handleSubmit(event: any) {
+        // TODO: Handle more than one quiz
+        let quizzes = [{
+            quiz_name: "Master Quiz",
+            questions: new Array()
+        }];
+        
+        let saved_quizzes = localStorage.getItem("quizzes");
+
+        if (saved_quizzes) {
+            quizzes = JSON.parse(saved_quizzes);
+        }
+
+        quizzes[0].questions.push(
+            {
+                question: this.state.question,
+                answer: this.state.answer
+            }
+        )
+
+        localStorage.setItem("quizzes", JSON.stringify(quizzes));
+        event.preventDefault();
+    }
+
     render() {
         return (
             <Card>
@@ -36,10 +71,14 @@ class InputQuestionScreen extends Component<Props, State> {
                     <Card.Subtitle>Your Answer</Card.Subtitle>
                     <Card.Title>🌟 {this.state.answer} 🌟</Card.Title>
                     <hr />
-                    <Form className="text-left">
+                    <Form className="text-left" onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Label>Enter your question!</Form.Label>
-                            <Form.Control type="text" placeholder="Your question" />
+                            <Form.Control
+                                type="text"
+                                placeholder="Your question"
+                                value={this.state.question}
+                                onChange={this.handleChange} />
                         </Form.Group>
                         <div className="text-center">
                             <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>

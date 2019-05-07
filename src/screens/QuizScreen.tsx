@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { Button, Card, ListGroup } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Card } from 'react-bootstrap';
 import ContainerComponent from '../components/ContainerComponent';
 
-class QuizScreen extends Component {
-    composeQuestions(questions: {question: string, answer: string}[]): JSX.Element[] {
+interface Props {
+    location: {
+        state: {
+            quiz_name: string
+            questions: [
+                {
+                    question: string,
+                    answer: string
+                }
+            ]
+        }
+    }
+}
+
+class QuizScreen extends Component<Props> {
+    composeQuestions(questions: { question: string, answer: string }[]): JSX.Element[] {
         let r: JSX.Element[] = [];
 
         questions.forEach((e, index) => {
@@ -22,17 +35,8 @@ class QuizScreen extends Component {
     }
 
     render() {
-        const quizTitle = "Quiz Title"
-        const questions = [
-            {
-                question: "På vilket MJ-album finns låten \"Thriller\"?",
-                answer: "Thriller"
-            },
-            {
-                question: "Vilken musikal är låten \"Somewhere\" från?",
-                answer: "West Side Story"
-            }
-        ]
+        const quizTitle = this.props.location.state.quiz_name;
+        const questions = this.props.location.state.questions;
 
         const renderedQuestions = this.composeQuestions(questions);
 
