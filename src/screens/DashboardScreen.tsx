@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Card, ListGroup } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
@@ -53,6 +53,7 @@ class DashboardScreen extends Component {
                         {this.getQuizzes()}
                     </ListGroup>
                 </Card.Body>
+
             </ContainerComponent >
         )
     }
