@@ -22,7 +22,6 @@ class InputQuestionScreen extends Component<Props, State> {
     }
 
     componentDidMount() {
-
         // TODO: Implement real checking
         if (this.props.location.state.answer) {
             this.setState({ answer: this.props.location.state.answer });

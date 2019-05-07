@@ -24,9 +24,9 @@ interface State {
             artists: [{
                 name: string
             }],
-            name: string
-        },
-        id: any
+            name: string,
+            id: string
+        }
     }]
 }
 
@@ -46,9 +46,9 @@ class SelectSongScreen extends Component<Props, State> {
                     artists: [{
                         name: ""
                     }],
-                    name: ""
-                },
-                id: ""
+                    name: "",
+                    id: ""
+                }
             }]
         }
     }
@@ -72,7 +72,7 @@ class SelectSongScreen extends Component<Props, State> {
                     <ListGroup.Item className="SongItem" key={i}>
                         <Link
                             key={i}
-                            to={`/answers/id=${item.id}/${localStorage.getItem('token')}/`}>
+                            to={`/answers/id=${item.track.id}/${localStorage.getItem('token')}/`}>
                             <SongListItemComponent
                                 image={item.track.album.images ? item.track.album.images[1].url : ""}
                                 name={item.track.name}
@@ -84,7 +84,7 @@ class SelectSongScreen extends Component<Props, State> {
             });
             return songItems;
         }
-        return null;
+        return undefined;
     }
 
     render() {
