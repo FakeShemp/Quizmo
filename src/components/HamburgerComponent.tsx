@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 
 //the token from spotify
-declare let path:any;
+declare let path: any;
 
 class HamburgerComponent extends Component {
     constructor(props: any, context: any) {
@@ -10,7 +10,6 @@ class HamburgerComponent extends Component {
     }
 
     render() {
-
         let path = localStorage.getItem('token');
 
         return (
@@ -21,11 +20,11 @@ class HamburgerComponent extends Component {
                     <Nav>
                         <Nav.Link href="/">Log In</Nav.Link>
                         <Nav.Link href={`/dashboard${path}`}>Dashboard</Nav.Link>
-                        <Nav.Link href={`/playlists/${path}`}>Playlists</Nav.Link>
+                        {/* <Nav.Link href={`/playlists/${path}`}>Playlists</Nav.Link>
                         <Nav.Link href={`/songs/${path}`}>Songs</Nav.Link>
                         <Nav.Link href={`/answears/${path}`}>Answers</Nav.Link>
                         <Nav.Link href={`/questionform/${path}`}>Input Question</Nav.Link>
-                        <Nav.Link href="/quiz">Quiz</Nav.Link>
+                        <Nav.Link href="/quiz">Quiz</Nav.Link> */}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

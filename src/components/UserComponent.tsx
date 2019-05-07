@@ -3,10 +3,11 @@
  * logged-in user's info.
  */
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
-import './UserComponent.css'
+import './UserComponent.css';
+import blankUser from '../images/Userimage.png';
 
 interface State {
     userName: string,
@@ -27,7 +28,7 @@ class UserComponent extends Component<Props, State> {
         super(props);
         this.state = {
             userName: '',
-            userImg: {url: ''},
+            userImg: { url: '' },
             playLists: []
         }
     }
@@ -36,19 +37,25 @@ class UserComponent extends Component<Props, State> {
         this.props.runIt();
         this.props.getUser()
             .then((res: any) => {
-                console.log(res);
                 this.setState({ userName: res.display_name, userImg: res.images[0] });
             });
     }
 
     render() {
-        let userImage = <Card.Img className="userIcon" variant="top" src="http://placekitten.com/200/200" />
+        let userImage = <Card.Img
+            className="userIcon"
+            variant="top"
+            src={blankUser} />
+
         if (this.state.userImg) {
-            userImage = <Card.Img className="userIcon" variant="top" src={`${this.state.userImg.url}`} />
+            userImage = <Card.Img
+                className="userIcon"
+                variant="top"
+                src={`${this.state.userImg.url}`} />
         }
 
         return (
-            <Card className="border-0">
+            <Card className="border-0 UserContainer">
                 <div className="text-center">
                     {userImage}
                 </div>

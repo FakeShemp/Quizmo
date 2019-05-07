@@ -4,7 +4,8 @@
  */
 
 import React, { Component } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
+import './ContainerComponent.css'
 
 class ContainerComponent extends Component {
     render() {
@@ -13,7 +14,11 @@ class ContainerComponent extends Component {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Container>
-                    {children}
+                    <Card>
+                        <Card.Body className="Container">
+                            {children}
+                        </Card.Body>
+                    </Card>
                 </Container>
             </div>
         )

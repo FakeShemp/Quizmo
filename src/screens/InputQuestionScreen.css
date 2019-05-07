@@ -1,3 +1,5 @@
 .SubmitButton {
     width: 80%;
+    background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
+    border-color: black;
 }
