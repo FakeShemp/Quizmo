@@ -61,6 +61,7 @@ class SelectSongScreen extends Component<Props, State> {
 
         this.props.getSongs(finalTracksID)
             .then((list: any) => {
+                console.log(list)
                 this.setState({ tracks: list })
             });
     }

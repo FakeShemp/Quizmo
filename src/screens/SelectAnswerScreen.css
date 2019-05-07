@@ -3,3 +3,11 @@
     background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
     border-color: black;
 }
+
+.player {
+    text-align: center; 
+}
+
+.playerText {
+    font-size: 20px;
+}
