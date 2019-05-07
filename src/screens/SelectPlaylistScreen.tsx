@@ -45,7 +45,7 @@ class SelectPlaylistScreen extends Component<Props, State> {
                             key={i}
                             to={`/songs/id=${item.id}/${localStorage.getItem('token')}`}>
                             <PlaylistListItemComponent
-                                image={item.images ? item.images[1].url : null}
+                                image={item.images ? item.images[0].url : null}
                                 name={item.name} />
                         </Link>
                     </ListGroup.Item>

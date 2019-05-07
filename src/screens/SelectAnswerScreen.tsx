@@ -25,7 +25,8 @@ interface State {
             ],
             release_date: string,
             name: string
-        }
+        },
+        preview_url:string
     }
 }
 
@@ -48,7 +49,8 @@ class SelectAnswerScreen extends Component<Props, State>{
                     ],
                     release_date: "",
                     name: ""
-                }
+                },
+                preview_url:""
             }
         }
     }
@@ -60,6 +62,7 @@ class SelectAnswerScreen extends Component<Props, State>{
 
         this.props.getSong(finalTrackID)
             .then((res: any) => {
+                console.log(res)
                 this.setState({ track: res })
             });
     }
@@ -76,7 +79,12 @@ class SelectAnswerScreen extends Component<Props, State>{
                 <Card>
                     <Card.Body>
                         <Card.Title className="text-center">Select question answer</Card.Title>
+                       
                         <ListGroup variant="flush">
+                        <ListGroup.Item className="player">
+                            <p className="playerText">Preview Song</p>
+                        {this.state.track.preview_url ?  <audio controls src={`${this.state.track.preview_url}`}></audio> : <p className="playerText">No preview avalible</p>}
+                        </ListGroup.Item>
                             <ListGroup.Item>
                                 <Link to={{
                                     pathname: "/questionform",

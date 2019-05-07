@@ -9,6 +9,7 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
+import { Button, Card, Form } from 'react-bootstrap';
 
 class DashboardScreen extends Component {
     getQuizzes = () => {
@@ -23,7 +24,7 @@ class DashboardScreen extends Component {
                     <ListGroup.Item key={index}>
                         <Link to={{
                                 pathname: "/quiz",
-                                state: {
+                                state: {    
                                     quiz_name: element.quiz_name,
                                     questions: element.questions
                                 }
