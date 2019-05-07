@@ -11,28 +11,49 @@ import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
 
 class DashboardScreen extends Component {
+    getQuizzes = () => {
+        let saved_quizzes = localStorage.getItem("quizzes");
+        let renderedQuizzes: any[] = [];
+
+        if (saved_quizzes) {
+            let quizzes = JSON.parse(saved_quizzes);
+
+            quizzes.forEach((element: any, index: number) => {
+                renderedQuizzes.push(
+                    <ListGroup.Item key={index}>
+                        <Link to={{
+                                pathname: "/quiz",
+                                state: {
+                                    quiz_name: element.quiz_name,
+                                    questions: element.questions
+                                }
+                            }}>
+                            <QuizListItemComponent
+                                quiz_name={element.quiz_name} />
+                        </Link>
+                    </ListGroup.Item>
+                )
+            });
+        }
+
+        return renderedQuizzes;
+    }
+
     render() {
         return (
             <ContainerComponent>
-                <UserComponent />
-                <ListGroup variant="flush">
-                    <ListGroup.Item>
-                        <Link to={`/playlists/${localStorage.getItem('token')}`}>
-                            <NewQuizComponent />
-                        </Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                        {/* Routing not implemented below */}
-                        <Link to="/quiz">
-                            <QuizListItemComponent />
-                        </Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                        <Link to="/quiz">
-                            <QuizListItemComponent />
-                        </Link>
-                    </ListGroup.Item>
-                </ListGroup>
+                <Card.Body>
+                    <UserComponent />
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <Link to={`/playlists/${localStorage.getItem('token')}`}>
+                                <NewQuizComponent />
+                            </Link>
+                        </ListGroup.Item>
+                        {this.getQuizzes()}
+                    </ListGroup>
+                </Card.Body>
+
             </ContainerComponent >
         )
     }
