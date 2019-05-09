@@ -14,7 +14,7 @@ class HamburgerComponent extends Component {
 
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="/dashboard">Quizmo</Navbar.Brand>
+                <Navbar.Brand href={`/dashboard/${path}`}>Quizmo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>

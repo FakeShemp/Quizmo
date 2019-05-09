@@ -5,7 +5,9 @@
 }
 
 .player {
-    text-align: center; 
+    text-align: center;
+    align-self: center;
+    background-color: rgb(196, 191, 191);
 }
 
 .playerText {

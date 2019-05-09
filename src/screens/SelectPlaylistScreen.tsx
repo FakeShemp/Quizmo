@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Fragment,Component } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
+import {SpinnerComponent} from '../components/SpinnerComponent';
 import './SelectPlaylistScreen.css'
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 }
 
 interface State {
+    success: boolean,
     playlists: {
         items?: [{
             name: any,
@@ -25,6 +27,7 @@ class SelectPlaylistScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props)
         this.state = {
+            success: false,
             playlists: {}
         }
     }
@@ -32,12 +35,12 @@ class SelectPlaylistScreen extends Component<Props, State> {
     componentDidMount() {
         this.props.getPlayLists()
             .then((res: object) => {
-                this.setState({ playlists: res })
+                this.setState({ playlists: res, success : true })
             });
     }
 
     composePlaylists = () => {
-        if (this.state.playlists.items) {
+        if (this.state.success && this.state.playlists.items) {
             const PlaylistItems = this.state.playlists.items.map((item, i) => {
                 return (
                     <ListGroup.Item className="PlaylistItem" key={i}>
@@ -53,12 +56,12 @@ class SelectPlaylistScreen extends Component<Props, State> {
             });
             return PlaylistItems;
         }
-        return null;
     }
 
     render() {
         return (
-            <ContainerComponent>
+            <Fragment>
+            { this.state.success && <ContainerComponent>
                 <ListGroup variant="flush">
                     <ListGroup.Item>
                         <Card className="border-0">
@@ -71,6 +74,9 @@ class SelectPlaylistScreen extends Component<Props, State> {
                     {this.composePlaylists()}
                 </ListGroup>
             </ContainerComponent>
+             }
+            {!this.state.success && <SpinnerComponent/>}
+            </Fragment>
         )
     }
 }

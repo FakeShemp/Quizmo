@@ -20,6 +20,7 @@ class SongListItemComponent extends Component<Props> {
                     <h5>{(this.props.name.length < 18) ? this.props.name : (this.props.name.slice(0,15) + '…')}</h5>
                     <h6>{this.props.artist} ({this.props.year})</h6>
                 </Col>
+                
             </Row>
         )
     }

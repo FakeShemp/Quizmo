@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Fragment,Component } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import SongListItemComponent from '../components/SongListItemComponent';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
+import {SpinnerComponent} from '../components/SpinnerComponent'
 import './SelectSongScreen.css';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 }
 
 interface State {
+    success: boolean,
     tracks: [{
         track: {
             album: {
@@ -30,10 +32,12 @@ interface State {
     }]
 }
 
+//renders the selectsongscreen takes the url and takes the id to fetch songs form spotify.
 class SelectSongScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props)
         this.state = {
+            success: false,
             tracks: [{
                 track: {
                     album: {
@@ -61,8 +65,7 @@ class SelectSongScreen extends Component<Props, State> {
 
         this.props.getSongs(finalTracksID)
             .then((list: any) => {
-                console.log(list)
-                this.setState({ tracks: list })
+                this.setState({ tracks: list, success : true })
             });
     }
 
@@ -85,11 +88,12 @@ class SelectSongScreen extends Component<Props, State> {
             });
             return songItems;
         }
-        return undefined;
     }
 
     render() {
         return (
+            <Fragment>
+            { this.state.success ? 
             <ContainerComponent>
                 <ListGroup variant="flush">
                     <ListGroup.Item>
@@ -99,9 +103,11 @@ class SelectSongScreen extends Component<Props, State> {
                             </Card.Body>
                         </Card>
                     </ListGroup.Item>
-                        {this.composeSongs()}
+                    { this.state.success && <Fragment>{this.composeSongs()}</Fragment> }
                 </ListGroup>
-            </ContainerComponent>
+            </ContainerComponent> : <SpinnerComponent/>
+            }
+             </Fragment>
         )
     }
 }
