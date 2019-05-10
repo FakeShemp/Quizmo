@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
+import {SpinnerComponent} from '../components/SpinnerComponent';
 import './SelectAnswerScreen.css'
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 
 interface State {
     id: string,
+    success: boolean,
     track: {
         id: string,
         name: string,
@@ -34,6 +36,7 @@ class SelectAnswerScreen extends Component<Props, State>{
     constructor(props: any) {
         super(props);
         this.state = {
+            success: false,
             id: "",
             track: {
                 id: "",
@@ -62,8 +65,7 @@ class SelectAnswerScreen extends Component<Props, State>{
 
         this.props.getSong(finalTrackID)
             .then((res: any) => {
-                console.log(res)
-                this.setState({ track: res })
+                this.setState({ track: res,success: true })
             });
     }
 
@@ -75,6 +77,8 @@ class SelectAnswerScreen extends Component<Props, State>{
         const albumYear = this.state.track.album.release_date.slice(0,4);
 
         return (
+            <Fragment>
+            {this.state.success &&
             <ContainerComponent>
                 <Card>
                     <Card.Body>
@@ -141,6 +145,10 @@ class SelectAnswerScreen extends Component<Props, State>{
                     </Card.Body>
                 </Card>
             </ContainerComponent>
+        }
+        {!this.state.success && <SpinnerComponent/>}
+        </Fragment>
+        
         )
     }
 }

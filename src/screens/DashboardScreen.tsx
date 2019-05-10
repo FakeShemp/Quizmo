@@ -54,7 +54,6 @@ class DashboardScreen extends Component {
                         {this.getQuizzes()}
                     </ListGroup>
                 </Card.Body>
-
             </ContainerComponent >
         )
     }

@@ -80,7 +80,7 @@ class InputQuestionScreen extends Component<Props, State> {
                                 onChange={this.handleChange} />
                         </Form.Group>
                         <div className="text-center">
-                            <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>
+                        <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>
                         </div>
                     </Form>
                 </Card.Body>
