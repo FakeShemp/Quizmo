@@ -85,11 +85,11 @@ class SelectAnswerScreen extends Component<Props, State>{
                         <Card.Title className="text-center">Select question answer</Card.Title>
                        
                         <ListGroup variant="flush">
-                        <ListGroup.Item className="player">
+                        <ListGroup.Item className="player listItem" >
                             <p className="playerText">Preview Song</p>
                         {this.state.track.preview_url ?  <audio controls src={`${this.state.track.preview_url}`}></audio> : <p className="playerText">No preview avalible</p>}
                         </ListGroup.Item>
-                            <ListGroup.Item>
+                            <ListGroup.Item className="listItem">
                                 <Link to={{
                                     pathname: "/questionform",
                                     state: {
@@ -102,7 +102,7 @@ class SelectAnswerScreen extends Component<Props, State>{
                                     </Button>
                                 </Link>
                             </ListGroup.Item>
-                            <ListGroup.Item>
+                            <ListGroup.Item className="listItem">
                                 <Link to={{
                                     pathname: "/questionform",
                                     state: {
@@ -115,7 +115,7 @@ class SelectAnswerScreen extends Component<Props, State>{
                                     </Button>
                                 </Link>
                             </ListGroup.Item>
-                            <ListGroup.Item>
+                            <ListGroup.Item className="listItem">
                                 <Link to={{
                                     pathname: "/questionform",
                                     state: {
@@ -128,7 +128,7 @@ class SelectAnswerScreen extends Component<Props, State>{
                                     </Button>
                                 </Link>
                             </ListGroup.Item>
-                            <ListGroup.Item>
+                            <ListGroup.Item className="listItem">
                                 <Link to={{
                                     pathname: "/questionform",
                                     state: {

@@ -96,7 +96,7 @@ class SelectSongScreen extends Component<Props, State> {
             { this.state.success ? 
             <ContainerComponent>
                 <ListGroup variant="flush">
-                    <ListGroup.Item>
+                    <ListGroup.Item className="listGroup">
                         <Card className="border-0">
                             <Card.Body className="text-center">
                                 <Card.Title>Select a song</Card.Title>

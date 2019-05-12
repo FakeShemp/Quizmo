@@ -15,6 +15,7 @@ interface State {
     question: string
 }
 
+// in this screen the user can input the question to the answear.
 class InputQuestionScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -66,7 +67,7 @@ class InputQuestionScreen extends Component<Props, State> {
     render() {
         return (
             <Card>
-                <Card.Body className="text-center">
+                <Card.Body className="text-center card-body">
                     <Card.Subtitle>Your Answer</Card.Subtitle>
                     <Card.Title>🌟 {this.state.answer} 🌟</Card.Title>
                     <hr />
@@ -81,6 +82,7 @@ class InputQuestionScreen extends Component<Props, State> {
                         </Form.Group>
                         <div className="text-center">
                         <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>
+                        <Button className="newQuestion" variant="primary" type="button">Add Question</Button>
                         </div>
                     </Form>
                 </Card.Body>

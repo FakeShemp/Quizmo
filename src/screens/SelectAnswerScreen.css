@@ -1,7 +1,6 @@
 .AnswerButton {
     width: 100%;
-    background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
-    border-color: black;
+    background: #eab100;
 }
 
 .player {
@@ -12,4 +11,8 @@
 
 .playerText {
     font-size: 20px;
+}
+
+.listItem {
+    background: #018f98;
 }

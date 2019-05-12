@@ -20,7 +20,7 @@ class PlaylistListItemComponent extends Component<Props> {
                     <Image src={this.props.image} fluid />
                 </Col>
                 <Col xs={8} className="my-auto">
-                    <h5>{this.props.name}</h5>
+                    <h5 className="playlistName">{this.props.name}</h5>
                 </Col>
             </Row>
         )
