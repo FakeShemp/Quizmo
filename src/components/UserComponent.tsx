@@ -22,6 +22,7 @@ interface Props {
     getHashParams: any,
 }
 
+// renders the usercomponent with image and name from spotify.
 class UserComponent extends Component<Props, State> {
 
     constructor(props: any) {
@@ -59,8 +60,8 @@ class UserComponent extends Component<Props, State> {
                 <div className="text-center">
                     {userImage}
                 </div>
-                <Card.Body>
-                    <Card.Title className="text-center">Hello {this.state.userName}!</Card.Title>
+                <Card.Body className="UserContainer-body">
+                    <Card.Title className="text-center"><h3>Hello {this.state.userName}!</h3></Card.Title>
                 </Card.Body>
             </Card>
         )

@@ -10,8 +10,12 @@ import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
 import { Button, Card, Form } from 'react-bootstrap';
+import './DashboardScreen.css';
 
+// Renders the dahsboardscreen and shows the quizzes that are avalible and gives the option to manke a new quiz
 class DashboardScreen extends Component {
+
+    // get the quizzes that is stored in localstorage and renders them.
     getQuizzes = () => {
         let saved_quizzes = localStorage.getItem("quizzes");
         let renderedQuizzes: any[] = [];
@@ -21,7 +25,7 @@ class DashboardScreen extends Component {
 
             quizzes.forEach((element: any, index: number) => {
                 renderedQuizzes.push(
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} className="btnContainer">
                         <Link to={{
                                 pathname: "/quiz",
                                 state: {    
@@ -43,10 +47,10 @@ class DashboardScreen extends Component {
     render() {
         return (
             <ContainerComponent>
-                <Card.Body>
+                <Card.Body className="color-secondary">
                     <UserComponent />
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
+                    <ListGroup>
+                        <ListGroup.Item className="btnContainer">
                             <Link to={`/playlists/${localStorage.getItem('token')}`}>
                                 <NewQuizComponent />
                             </Link>

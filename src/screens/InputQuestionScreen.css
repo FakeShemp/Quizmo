@@ -1,5 +1,16 @@
 .SubmitButton {
     width: 80%;
-    background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
-    border-color: black;
+    background: #eab100;
+    margin-bottom: 10px;
+}
+
+.newQuestion {
+    width: 80%;
+    background: #eab100;
+}
+
+
+.card {
+    border: none;
+    background: #018f98;
 }

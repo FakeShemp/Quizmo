@@ -1,4 +1,8 @@
 .SongItem {
     padding: 0;
-    background: linear-gradient(180deg, rgb(83, 81, 87) 0%, rgb(68, 66, 71) 100%);
+    background: #eab100;
+}
+
+.listGroup {
+    background: #018f98;
 }

@@ -5,8 +5,8 @@ import './NewQuizComponent.css'
 class NewQuizComponent extends Component {
     render() {
         return (
-            <Card className="NewQuizButton" bg="success">
-                <Card.ImgOverlay className="my-auto mx-auto text-center">
+            <Card className="NewQuizButton">
+                <Card.ImgOverlay className="my-auto mx-auto text-center newQuizBtn">
                     <Card.Title>New Quiz</Card.Title>
                 </Card.ImgOverlay>
             </Card>

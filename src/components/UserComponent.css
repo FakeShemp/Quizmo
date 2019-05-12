@@ -3,6 +3,12 @@
     border-radius: 50%;
 }
 
-.UserContainer {
-    background-color: rgba(0, 0, 0, 0);
+.card {
+    border: none;
+    background: #018f98;
 }
+
+.UserContainer-body {
+    background-color: #018f98;
+}
+

@@ -39,7 +39,7 @@ class SelectPlaylistScreen extends Component<Props, State> {
             });
     }
 
-    composePlaylists = () => {
+     composePlaylists = () => {
         if (this.state.success && this.state.playlists.items) {
             const PlaylistItems = this.state.playlists.items.map((item, i) => {
                 return (
@@ -63,7 +63,7 @@ class SelectPlaylistScreen extends Component<Props, State> {
             <Fragment>
             { this.state.success && <ContainerComponent>
                 <ListGroup variant="flush">
-                    <ListGroup.Item>
+                    <ListGroup.Item className="hideThis">
                         <Card className="border-0">
                             <Card.Body className="text-center">
                                 <Card.Title>These are your playlists</Card.Title>
@@ -71,7 +71,7 @@ class SelectPlaylistScreen extends Component<Props, State> {
                             </Card.Body>
                         </Card>
                     </ListGroup.Item>
-                    {this.composePlaylists()}
+                     {this.composePlaylists()}
                 </ListGroup>
             </ContainerComponent>
              }
