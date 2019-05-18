@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import {SpinnerComponent} from '../components/SpinnerComponent';
+import CustomMediaComponent from '../components/AudioPlayerComponent'
 import './SelectAnswerScreen.css'
 
 interface Props {
     getSong: any
-}
+}   
 
 interface State {
     id: string,
@@ -86,8 +87,9 @@ class SelectAnswerScreen extends Component<Props, State>{
                        
                         <ListGroup variant="flush">
                         <ListGroup.Item className="player listItem" >
-                            <p className="playerText">Preview Song</p>
-                        {this.state.track.preview_url ?  <audio controls src={`${this.state.track.preview_url}`}></audio> : <p className="playerText">No preview avalible</p>}
+                            <p className="playerText">Preview Song</p> 
+                        <CustomMediaComponent songPreview={this.state.track.preview_url}>
+                        </CustomMediaComponent>
                         </ListGroup.Item>
                             <ListGroup.Item className="listItem">
                                 <Link to={{
