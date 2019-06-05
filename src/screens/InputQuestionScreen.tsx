@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { Button, Card, Form } from 'react-bootstrap';
 import './InputQuestionScreen.css';
 
-interface Props {
-    location: {
-        state: {
-            answer: string
-        }
-    }
+interface Props extends RouteComponentProps<any> {
+    // location: {
+    //     state: {
+    //         answer: string
+    //     }
+    // }
 }
 
 interface State {
@@ -46,7 +47,7 @@ class InputQuestionScreen extends Component<Props, State> {
             quiz_name: "Master Quiz",
             questions: new Array()
         }];
-        
+
         let saved_quizzes = localStorage.getItem("quizzes");
 
         if (saved_quizzes) {
@@ -62,6 +63,8 @@ class InputQuestionScreen extends Component<Props, State> {
 
         localStorage.setItem("quizzes", JSON.stringify(quizzes));
         event.preventDefault();
+        
+        this.props.history.push('/dashboard');
     }
 
     render() {
@@ -81,8 +84,8 @@ class InputQuestionScreen extends Component<Props, State> {
                                 onChange={this.handleChange} />
                         </Form.Group>
                         <div className="text-center">
-                        <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>
-                        <Button className="newQuestion" variant="primary" type="button">Add Question</Button>
+                            <Button className="SubmitButton" variant="primary" type="submit">Submit</Button>
+                            <Button className="newQuestion" variant="primary" type="button">Add Question</Button>
                         </div>
                     </Form>
                 </Card.Body>
