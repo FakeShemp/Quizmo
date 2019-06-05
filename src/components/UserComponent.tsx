@@ -38,6 +38,7 @@ class UserComponent extends Component<Props, State> {
         this.props.runIt();
         this.props.getUser()
             .then((res: any) => {
+                console.log(res)
                 this.setState({ userName: res.display_name, userImg: res.images[0] });
             });
     }

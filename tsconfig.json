@@ -23,7 +23,7 @@
     "src"
   ],
   "exclude": [
-   "src/auth_code"
+   "src/auth"
   ]
 }
   

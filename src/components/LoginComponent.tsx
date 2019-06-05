@@ -9,19 +9,16 @@ import { Card, Button } from 'react-bootstrap';
 class LoginComponent extends Component {
 
 login = () => {
-window.location.assign("http://localhost:8888")
+window.location.assign("http://localhost:1337/login")
  }
 
- hello = setTimeout(this.login,3000);
 
     render() {
-
-
 
         return (
             <Card.Body>
                 <Card.Title><h1>Welcome to Quizmo</h1></Card.Title>
-                <h2>you will be redirected shortly</h2>
+                <button onClick={this.login}>Log in with spotify</button>
             </Card.Body>
         );
     }
