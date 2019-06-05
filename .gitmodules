@@ -1,6 +1,0 @@
-[submodule "spotify-api"]
-	path = spotify-api
-	url = https://github.com/spotify/web-api-auth-examples
-[submodule "src/auth_code"]
-	path = src/auth_code
-	url = https://github.com/spotify/web-api-auth-examples.git
