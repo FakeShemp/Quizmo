@@ -1,0 +1,15 @@
+.playBtn {
+    height: 37px;
+    width: 37px;
+    border-style: solid;
+    border-width: 20px 0px 20px 37px; 
+    border-color: transparent transparent transparent #eab100;
+    margin-bottom: 10px;  
+}
+
+.pauseBtn {
+    height: 37px;
+    width: 37px;
+    background-color: #eab100;
+    margin-bottom: 13px;
+}
