@@ -65,6 +65,10 @@ class UserComponent extends Component<Props, State> {
         });
     }
 
+    getUser = async (id: string) => {
+        return await fetch('http://localhost:3012/users/' + id)
+    }
+
     render() {
         let userImage =
             <Card.Img
