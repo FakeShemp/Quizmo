@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
+import { GetBackendInfo } from '../components/HOCS/GetBackendInfoHoc';
 import './UserComponent.css';
 import blankUser from '../images/Userimage.png';
 
@@ -22,6 +23,9 @@ interface Props {
     getUser: any,
     runIt: any,
     getHashParams: any,
+    backend: {
+        postUser: any,
+    }
 }
 
 // renders the usercomponent with image and name from spotify.
@@ -47,26 +51,8 @@ class UserComponent extends Component<Props, State> {
                     userEmail: res.email,
                     userId: res.id
                 });
-                this.postUser(res.id, res.email);
+                this.props.backend.postUser(res.id, res.email);
             });
-    }
-
-    postUser = async (id: string, email: string) => {
-        return await fetch('http://localhost:3012/users/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userId: id,
-                email: email
-            })
-        });
-    }
-
-    getUser = async (id: string) => {
-        return await fetch('http://localhost:3012/users/' + id)
     }
 
     render() {
@@ -99,4 +85,4 @@ class UserComponent extends Component<Props, State> {
     }
 }
 
-export default GetSpotifyInfo(UserComponent);
+export default GetBackendInfo(GetSpotifyInfo(UserComponent));
