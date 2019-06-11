@@ -9,32 +9,75 @@ import ContainerComponent from '../components/ContainerComponent';
 import QuizListItemComponent from '../components/QuizListItemComponent';
 import UserComponent from '../components/UserComponent';
 import NewQuizComponent from '../components/NewQuizComponent';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { GetBackendInfo } from '../components/HOCS/GetBackendInfoHoc';
+import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import './DashboardScreen.css';
 
-// Renders the dahsboardscreen and shows the quizzes that are avalible and gives the option to manke a new quiz
-class DashboardScreen extends Component {
+interface State {
+    userId: string,
+    quizzes: any[]
+}
 
-    // get the quizzes that is stored in localstorage and renders them.
+interface Props {
+    getUser: any,
+    backend: {
+        getUser: any,
+        getUserBySpotifyId: any,
+        getQuizzes: any
+    }
+}
+
+// Renders the dahsboardscreen and shows the quizzes that are avalible and gives the option to manke a new quiz
+class DashboardScreen extends Component<Props, State> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            userId: '',
+            quizzes: new Array()
+        }
+    }
+
+    componentDidMount() {
+        this.props.getUser()
+            .then((res: any) => {
+                this.props.backend.getUserBySpotifyId(res.id)
+                    .then((res: any) => {
+                        this.setState({
+                            userId: res._id
+                        })
+                    })
+            });
+    }
+
+    componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
+        if (this.state.userId !== prevState.userId) {
+            this.props.backend.getQuizzes(this.state.userId)
+                .then((res: any) => {
+                    this.setState({
+                        quizzes: this.state.quizzes.concat(res)
+                    })
+                })
+        }
+    }
+
     getQuizzes = () => {
-        let saved_quizzes = localStorage.getItem("quizzes");
         let renderedQuizzes: any[] = [];
 
-        if (saved_quizzes) {
-            let quizzes = JSON.parse(saved_quizzes);
-
-            quizzes.forEach((element: any, index: number) => {
+        if (this.state.quizzes.length != 0) {
+            this.state.quizzes.forEach((element: any, index: number) => {
                 renderedQuizzes.push(
                     <ListGroup.Item key={index} className="btnContainer">
                         <Link to={{
-                                pathname: "/quiz",
-                                state: {    
-                                    quiz_name: element.quiz_name,
-                                    questions: element.questions
-                                }
-                            }}>
+                            pathname: "/quiz",
+                            state: {
+                                quiz_name: element.name,
+                                questions: element.questions
+                            }
+                        }}>
                             <QuizListItemComponent
-                                quiz_name={element.quiz_name} />
+                                quiz_name={element.name}
+                            />
                         </Link>
                     </ListGroup.Item>
                 )
@@ -63,4 +106,4 @@ class DashboardScreen extends Component {
     }
 }
 
-export default DashboardScreen;
+export default GetBackendInfo(GetSpotifyInfo(DashboardScreen));
