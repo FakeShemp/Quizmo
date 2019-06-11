@@ -3,13 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Button, Card, Form } from 'react-bootstrap';
 import './InputQuestionScreen.css';
 
-interface Props extends RouteComponentProps<any> {
-    // location: {
-    //     state: {
-    //         answer: string
-    //     }
-    // }
-}
+interface Props extends RouteComponentProps<any> {}
 
 interface State {
     answer: string,

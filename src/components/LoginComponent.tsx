@@ -4,17 +4,15 @@
  */
 
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 class LoginComponent extends Component {
 
-login = () => {
-window.location.assign("http://localhost:1337/login")
- }
-
+    login = () => {
+        window.location.assign("http://localhost:1337/login")
+    }
 
     render() {
-
         return (
             <Card.Body>
                 <Card.Title><h1>Welcome to Quizmo</h1></Card.Title>

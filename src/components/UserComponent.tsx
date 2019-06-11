@@ -11,6 +11,8 @@ import blankUser from '../images/Userimage.png';
 
 interface State {
     userName: string,
+    userId: string,
+    userEmail: string,
     userImg: {
         url: string
     },
@@ -24,11 +26,12 @@ interface Props {
 
 // renders the usercomponent with image and name from spotify.
 class UserComponent extends Component<Props, State> {
-
     constructor(props: any) {
         super(props);
         this.state = {
             userName: '',
+            userId: '',
+            userEmail: '',
             userImg: { url: '' },
             playLists: []
         }
@@ -38,22 +41,49 @@ class UserComponent extends Component<Props, State> {
         this.props.runIt();
         this.props.getUser()
             .then((res: any) => {
-                console.log(res)
-                this.setState({ userName: res.display_name, userImg: res.images[0] });
+                this.setState({
+                    userName: res.display_name,
+                    userImg: res.images[0],
+                    userEmail: res.email,
+                    userId: res.id
+                });
+                this.postUser(res.id, res.email);
             });
     }
 
-    render() {
-        let userImage = <Card.Img
-            className="userIcon"
-            variant="top"
-            src={blankUser} />
+    postUser = async (id: string, email: string) => {
+        return await fetch('http://localhost:3012/users/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: id,
+                email: email
+            })
+        });
+    }
 
-        if (this.state.userImg) {
-            userImage = <Card.Img
+    getUser = async (id: string) => {
+        return await fetch('http://localhost:3012/users/' + id)
+    }
+
+    render() {
+        let userImage =
+            <Card.Img
                 className="userIcon"
                 variant="top"
-                src={`${this.state.userImg.url}`} />
+                src={blankUser}
+            />
+
+        if (this.state.userImg) {
+            userImage =
+                <Card.Img
+                    className="userIcon"
+                    variant="top"
+                    src={`${this.state.userImg.url}`}
+                />
         }
 
         return (
