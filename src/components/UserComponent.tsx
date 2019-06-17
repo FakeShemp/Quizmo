@@ -24,7 +24,7 @@ interface Props {
     getHashParams: any,
     backend: {
         postUser: any,
-        getUserBySpotifyId:any
+        getUserBySpotifyId: any
     }
 }
 
@@ -55,14 +55,13 @@ class UserComponent extends Component<Props, State> {
             })
     }
 
-    componentDidUpdate()  {
-    // set the user in localstorage for later use
+    componentDidUpdate() {
+        // set the user in localstorage for later use
         this.props.backend.getUserBySpotifyId(this.state.userId)
-        .then((res:any) => {
-            console.log(res)
-            localStorage.setItem('user', res._id )
-        })
-    }   
+            .then((res: any) => {
+                localStorage.setItem('user', res._id)
+            })
+    }
 
     render() {
         let userImage =

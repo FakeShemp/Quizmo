@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
@@ -7,11 +8,12 @@ import { SpinnerComponent } from '../components/SpinnerComponent';
 import CustomMediaComponent from '../components/AudioPlayerComponent'
 import './SelectAnswerScreen.css'
 
-interface Props {
+interface Props extends RouteComponentProps<any> {
     getSong: any
 }
 
 interface State {
+    playlistName: string,
     id: string,
     success: boolean,
     track: {
@@ -37,6 +39,7 @@ class SelectAnswerScreen extends Component<Props, State>{
     constructor(props: any) {
         super(props);
         this.state = {
+            playlistName: "",
             success: false,
             id: "",
             track: {
@@ -68,10 +71,15 @@ class SelectAnswerScreen extends Component<Props, State>{
             .then((res: any) => {
                 this.setState({ track: res, success: true })
             });
+
+        if (this.props.location.state.playlistName) {
+            this.setState({ playlistName: this.props.location.state.playlistName });
+        }
     }
 
     render() {
         const artist = this.state.track.artists[0].name;
+        const playlistName = this.state.playlistName;
         const songTitle = this.state.track.name;
         const albumTitle = this.state.track.album.name;
         const albumYear = this.state.track.album.release_date.slice(0, 4);
@@ -93,7 +101,8 @@ class SelectAnswerScreen extends Component<Props, State>{
                                         <Link to={{
                                             pathname: "/questionform",
                                             state: {
-                                                answer: artist
+                                                answer: artist,
+                                                playlistName: playlistName
                                             }
                                         }} >
                                             <Button className="AnswerButton">
@@ -106,7 +115,8 @@ class SelectAnswerScreen extends Component<Props, State>{
                                         <Link to={{
                                             pathname: "/questionform",
                                             state: {
-                                                answer: songTitle
+                                                answer: songTitle,
+                                                playlistName: playlistName
                                             }
                                         }} >
                                             <Button className="AnswerButton">
@@ -119,7 +129,8 @@ class SelectAnswerScreen extends Component<Props, State>{
                                         <Link to={{
                                             pathname: "/questionform",
                                             state: {
-                                                answer: albumTitle
+                                                answer: albumTitle,
+                                                playlistName: playlistName
                                             }
                                         }} >
                                             <Button className="AnswerButton">
@@ -132,7 +143,8 @@ class SelectAnswerScreen extends Component<Props, State>{
                                         <Link to={{
                                             pathname: "/questionform",
                                             state: {
-                                                answer: albumYear
+                                                answer: albumYear,
+                                                playlistName: playlistName
                                             }
                                         }} >
                                             <Button className="AnswerButton">

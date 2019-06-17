@@ -1,10 +1,10 @@
-import React, { Fragment,Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ContainerComponent from '../components/ContainerComponent';
 import PlaylistListItemComponent from '../components/PlaylistListItemComponent';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
-import {SpinnerComponent} from '../components/SpinnerComponent';
+import { SpinnerComponent } from '../components/SpinnerComponent';
 import './SelectPlaylistScreen.css'
 
 interface Props {
@@ -35,18 +35,24 @@ class SelectPlaylistScreen extends Component<Props, State> {
     componentDidMount() {
         this.props.getPlayLists()
             .then((res: object) => {
-                this.setState({ playlists: res, success : true })
+                this.setState({ playlists: res, success: true })
             });
     }
 
-     composePlaylists = () => {
+    composePlaylists = () => {
         if (this.state.success && this.state.playlists.items) {
             const PlaylistItems = this.state.playlists.items.map((item, i) => {
                 return (
                     <ListGroup.Item className="PlaylistItem" key={i}>
                         <Link
                             key={i}
-                            to={`/songs/id=${item.id}/${localStorage.getItem('token')}`}>
+                            to={{
+                                pathname: `/songs/id=${item.id}/${localStorage.getItem('token')}`,
+                                state: {
+                                    playlistName: item.name
+                                }
+                            }}
+                        >
                             <PlaylistListItemComponent
                                 image={item.images ? item.images[0].url : null}
                                 name={item.name} />
@@ -61,21 +67,21 @@ class SelectPlaylistScreen extends Component<Props, State> {
     render() {
         return (
             <Fragment>
-            { this.state.success && <ContainerComponent>
-                <ListGroup variant="flush">
-                    <ListGroup.Item className="hideThis">
-                        <Card className="border-0">
-                            <Card.Body className="text-center">
-                                <Card.Title>These are your playlists</Card.Title>
-                                <Card.Subtitle>Lets make a quiz from one</Card.Subtitle>
-                            </Card.Body>
-                        </Card>
-                    </ListGroup.Item>
-                     {this.composePlaylists()}
-                </ListGroup>
-            </ContainerComponent>
-             }
-            {!this.state.success && <SpinnerComponent/>}
+                {this.state.success && <ContainerComponent>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item className="hideThis">
+                            <Card className="border-0">
+                                <Card.Body className="text-center">
+                                    <Card.Title>These are your playlists</Card.Title>
+                                    <Card.Subtitle>Lets make a quiz from one</Card.Subtitle>
+                                </Card.Body>
+                            </Card>
+                        </ListGroup.Item>
+                        {this.composePlaylists()}
+                    </ListGroup>
+                </ContainerComponent>
+                }
+                {!this.state.success && <SpinnerComponent />}
             </Fragment>
         )
     }

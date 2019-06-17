@@ -11,6 +11,7 @@ interface Props extends RouteComponentProps<any> {
 }
 
 interface State {
+    playlistName: string,
     answer: string,
     question: string
 }
@@ -21,6 +22,7 @@ class InputQuestionScreen extends Component<Props, State> {
         super(props);
 
         this.state = {
+            playlistName: "",
             answer: "",
             question: ""
         };
@@ -32,9 +34,10 @@ class InputQuestionScreen extends Component<Props, State> {
     componentDidMount() {
         // TODO: Implement real checking
         if (this.props.location.state) {
-            if(this.props.location.state.answer) {
-            this.setState({ answer: this.props.location.state.answer });
-            }
+            this.setState({
+                answer: this.props.location.state.answer,
+                playlistName: this.props.location.state.playlistName
+            });
         }
     }
 
@@ -43,10 +46,8 @@ class InputQuestionScreen extends Component<Props, State> {
     }
 
     handleSubmit(event: any) {
-
-        
         event.preventDefault();
-     
+
         let question = [{
             question: this.state.question,
             answer: this.state.answer
@@ -54,16 +55,13 @@ class InputQuestionScreen extends Component<Props, State> {
 
         let test2 = localStorage.getItem('user')
 
-
-        let nameToSend = "test"
+        let nameToSend = this.state.playlistName
 
         // localStorage.setItem("quizzes", JSON.stringify(quizzes));
-        this.props.backend.postQuiz( nameToSend,test2,question)
-        .then(()=> {
-            this.props.history.push('/dashboard')
-        })
-
-      
+        this.props.backend.postQuiz(nameToSend, test2, question)
+            .then(() => {
+                this.props.history.push('/dashboard')
+            })
     }
 
     render() {
