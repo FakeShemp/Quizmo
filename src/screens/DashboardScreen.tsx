@@ -13,18 +13,21 @@ import { Card } from 'react-bootstrap';
 import { GetBackendInfo } from '../components/HOCS/GetBackendInfoHoc';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import './DashboardScreen.css';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface State {
     userId: string,
-    quizzes: any[]
+    quizzes: any[],
+    deleted: any
 }
 
-interface Props {
+interface Props extends RouteComponentProps<any> {
     getUser: any,
     backend: {
         getUser: any,
         getUserBySpotifyId: any,
-        getQuizzes: any
+        getQuizzes: any,
+        deleteQuiz: any
     }
 }
 
@@ -34,7 +37,8 @@ class DashboardScreen extends Component<Props, State> {
         super(props);
         this.state = {
             userId: '',
-            quizzes: new Array()
+            quizzes: new Array(),
+            deleted: ''
         }
     }
 
@@ -51,14 +55,21 @@ class DashboardScreen extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
-        if (this.state.userId !== prevState.userId) {
+         if (this.state.userId !== prevState.userId || this.state.deleted !== prevState.deleted) {
             this.props.backend.getQuizzes(this.state.userId)
                 .then((res: any) => {
                     this.setState({
-                        quizzes: this.state.quizzes.concat(res)
+                        quizzes: res
                     })
                 })
         }
+    }
+    
+    delQuiz = (id: string) => {
+        this.props.backend.deleteQuiz(id)
+        .then(() => {
+            this.setState({deleted: id})
+        })
     }
 
     getQuizzes = () => {
@@ -68,6 +79,7 @@ class DashboardScreen extends Component<Props, State> {
             this.state.quizzes.forEach((element: any, index: number) => {
                 renderedQuizzes.push(
                     <ListGroup.Item key={index} className="btnContainer">
+                        <button onClick={() => this.delQuiz(element._id)}>delete</button>
                         <Link to={{
                             pathname: "/quiz",
                             state: {
