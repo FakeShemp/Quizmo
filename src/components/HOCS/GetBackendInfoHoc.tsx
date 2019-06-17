@@ -53,8 +53,8 @@ export const GetBackendInfo = (WrappedComponent: any) => {
             });
         }
 
-        deleteQuiz = async (id: string) => {
-            fetch(`http://localhost:3012/quiz/${id}`, {
+        deleteQuiz = (id: string) => {
+           return fetch(`http://localhost:3012/quiz/${id}`, {
               method: 'DELETE',
             }).then(res => res.json())
               .then(response => console.log('Success:', JSON.stringify(response)))

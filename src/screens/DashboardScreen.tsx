@@ -55,24 +55,21 @@ class DashboardScreen extends Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
-         if (this.state.userId !== prevState.userId) {
+         if (this.state.userId !== prevState.userId || this.state.deleted !== prevState.deleted) {
             this.props.backend.getQuizzes(this.state.userId)
                 .then((res: any) => {
                     this.setState({
-                        quizzes: this.state.quizzes.concat(res)
+                        quizzes: res
                     })
                 })
         }
     }
     
-    /*
-    
-    */
-
     delQuiz = (id: string) => {
         this.props.backend.deleteQuiz(id)
-        
-           
+        .then(() => {
+            this.setState({deleted: id})
+        })
     }
 
     getQuizzes = () => {
