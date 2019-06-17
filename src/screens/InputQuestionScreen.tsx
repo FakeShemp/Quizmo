@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button, Card, Form } from 'react-bootstrap';
+import { GetBackendInfo } from '../components/HOCS/GetBackendInfoHoc';
 import './InputQuestionScreen.css';
 
-interface Props extends RouteComponentProps<any> {}
+interface Props extends RouteComponentProps<any> {
+    backend: {
+        postQuiz: any
+    }
+}
 
 interface State {
     answer: string,
@@ -26,8 +31,10 @@ class InputQuestionScreen extends Component<Props, State> {
 
     componentDidMount() {
         // TODO: Implement real checking
-        if (this.props.location.state.answer) {
+        if (this.props.location.state) {
+            if(this.props.location.state.answer) {
             this.setState({ answer: this.props.location.state.answer });
+            }
         }
     }
 
@@ -36,29 +43,27 @@ class InputQuestionScreen extends Component<Props, State> {
     }
 
     handleSubmit(event: any) {
-        // TODO: Handle more than one quiz
-        let quizzes = [{
-            quiz_name: "Master Quiz",
-            questions: new Array()
-        }];
 
-        let saved_quizzes = localStorage.getItem("quizzes");
-
-        if (saved_quizzes) {
-            quizzes = JSON.parse(saved_quizzes);
-        }
-
-        quizzes[0].questions.push(
-            {
-                question: this.state.question,
-                answer: this.state.answer
-            }
-        )
-
-        localStorage.setItem("quizzes", JSON.stringify(quizzes));
-        event.preventDefault();
         
-        this.props.history.push('/dashboard');
+        event.preventDefault();
+     
+        let question = [{
+            question: this.state.question,
+            answer: this.state.answer
+        }]
+
+        let test2 = localStorage.getItem('user')
+
+
+        let nameToSend = "test"
+
+        // localStorage.setItem("quizzes", JSON.stringify(quizzes));
+        this.props.backend.postQuiz( nameToSend,test2,question)
+        .then(()=> {
+            this.props.history.push('/dashboard')
+        })
+
+      
     }
 
     render() {
@@ -88,4 +93,4 @@ class InputQuestionScreen extends Component<Props, State> {
     }
 }
 
-export default InputQuestionScreen;
+export default GetBackendInfo(InputQuestionScreen);

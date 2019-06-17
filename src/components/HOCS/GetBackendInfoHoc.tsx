@@ -38,13 +38,29 @@ export const GetBackendInfo = (WrappedComponent: any) => {
             }
         }
 
+        postQuiz = async (name: string, user: string, questions:any) => {
+            return await fetch('http://localhost:3012/quiz', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    user: user,
+                    questions: questions
+                })
+            });
+        }
+
         render() {
             return <WrappedComponent
                 backend={{
                     getUser: this.getUser,
                     getUserBySpotifyId: this.getUserBySpotifyId,
                     postUser: this.postUser,
-                    getQuizzes: this.getQuizzes
+                    getQuizzes: this.getQuizzes,
+                    postQuiz: this.postQuiz
                 }}
                 {...this.props}
             />

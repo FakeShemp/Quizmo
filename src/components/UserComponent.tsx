@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import { GetSpotifyInfo } from '../components/HOCS/GetSpotifyInfoHoc';
 import { GetBackendInfo } from '../components/HOCS/GetBackendInfoHoc';
-import './UserComponent.css';
 import blankUser from '../images/Userimage.png';
 
 interface State {
@@ -25,6 +24,7 @@ interface Props {
     getHashParams: any,
     backend: {
         postUser: any,
+        getUserBySpotifyId:any
     }
 }
 
@@ -52,8 +52,17 @@ class UserComponent extends Component<Props, State> {
                     userId: res.id
                 });
                 this.props.backend.postUser(res.id, res.email);
-            });
+            })
     }
+
+    componentDidUpdate()  {
+    // set the user in localstorage for later use
+        this.props.backend.getUserBySpotifyId(this.state.userId)
+        .then((res:any) => {
+            console.log(res)
+            localStorage.setItem('user', res._id )
+        })
+    }   
 
     render() {
         let userImage =
