@@ -53,6 +53,14 @@ export const GetBackendInfo = (WrappedComponent: any) => {
             });
         }
 
+        deleteQuiz = async (id: string) => {
+            fetch(`http://localhost:3012/quiz/${id}`, {
+              method: 'DELETE',
+            }).then(res => res.json())
+              .then(response => console.log('Success:', JSON.stringify(response)))
+              .catch(error => console.error('Error:', error));
+          }
+
         render() {
             return <WrappedComponent
                 backend={{
@@ -60,7 +68,8 @@ export const GetBackendInfo = (WrappedComponent: any) => {
                     getUserBySpotifyId: this.getUserBySpotifyId,
                     postUser: this.postUser,
                     getQuizzes: this.getQuizzes,
-                    postQuiz: this.postQuiz
+                    postQuiz: this.postQuiz,
+                    deleteQuiz: this.deleteQuiz
                 }}
                 {...this.props}
             />
